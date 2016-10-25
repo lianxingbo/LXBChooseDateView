@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EE25F0D1D1D309700D7F546 /* LXBChooseDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE25F0C1D1D309700D7F546 /* LXBChooseDateView.m */; };
+		0E67CFC31DBF64F50024B1CD /* NSDate+LXBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E67CFBE1DBF64F50024B1CD /* NSDate+LXBExtension.m */; };
+		0E67CFC41DBF64F50024B1CD /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E67CFC01DBF64F50024B1CD /* UIView+LayoutMethods.m */; };
+		0E67CFC51DBF64F50024B1CD /* LXBChooseDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E67CFC21DBF64F50024B1CD /* LXBChooseDateView.m */; };
 		0EE3044E1DB4AAFC00A027CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3044D1DB4AAFC00A027CF /* Assets.xcassets */; };
-		0EE304771DB4C71200A027CF /* NSDate+LXBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE304761DB4C71200A027CF /* NSDate+LXBExtension.m */; };
-		0EEB30331DB0C5E400D19599 /* UIView+LayoutMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB30311DB0C5E400D19599 /* UIView+LayoutMethods.m */; };
 		0EFE71B71D0E93640049CDD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE71B61D0E93640049CDD1 /* main.m */; };
 		0EFE71BA1D0E93640049CDD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE71B91D0E93640049CDD1 /* AppDelegate.m */; };
 		0EFE71BD1D0E93640049CDD1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE71BC1D0E93640049CDD1 /* ViewController.m */; };
@@ -19,13 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0EE25F0B1D1D309700D7F546 /* LXBChooseDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXBChooseDateView.h; path = ../LXBChooseDateView.h; sourceTree = "<group>"; };
-		0EE25F0C1D1D309700D7F546 /* LXBChooseDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXBChooseDateView.m; path = ../LXBChooseDateView.m; sourceTree = "<group>"; };
+		0E67CFBD1DBF64F50024B1CD /* NSDate+LXBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LXBExtension.h"; sourceTree = "<group>"; };
+		0E67CFBE1DBF64F50024B1CD /* NSDate+LXBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LXBExtension.m"; sourceTree = "<group>"; };
+		0E67CFBF1DBF64F50024B1CD /* UIView+LayoutMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayoutMethods.h"; sourceTree = "<group>"; };
+		0E67CFC01DBF64F50024B1CD /* UIView+LayoutMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayoutMethods.m"; sourceTree = "<group>"; };
+		0E67CFC11DBF64F50024B1CD /* LXBChooseDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXBChooseDateView.h; sourceTree = "<group>"; };
+		0E67CFC21DBF64F50024B1CD /* LXBChooseDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXBChooseDateView.m; sourceTree = "<group>"; };
 		0EE3044D1DB4AAFC00A027CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0EE304751DB4C71200A027CF /* NSDate+LXBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+LXBExtension.h"; path = "../NSDate+LXBExtension.h"; sourceTree = "<group>"; };
-		0EE304761DB4C71200A027CF /* NSDate+LXBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+LXBExtension.m"; path = "../NSDate+LXBExtension.m"; sourceTree = "<group>"; };
-		0EEB30301DB0C5E400D19599 /* UIView+LayoutMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+LayoutMethods.h"; path = "../UIView+LayoutMethods.h"; sourceTree = "<group>"; };
-		0EEB30311DB0C5E400D19599 /* UIView+LayoutMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+LayoutMethods.m"; path = "../UIView+LayoutMethods.m"; sourceTree = "<group>"; };
 		0EFE71B21D0E93640049CDD1 /* calender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EFE71B61D0E93640049CDD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0EFE71B81D0E93640049CDD1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,25 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E198A181DB61342008E999A /* category */ = {
+		0E67CFBB1DBF64F50024B1CD /* LXBChooseDateView */ = {
 			isa = PBXGroup;
 			children = (
-				0EE304751DB4C71200A027CF /* NSDate+LXBExtension.h */,
-				0EE304761DB4C71200A027CF /* NSDate+LXBExtension.m */,
-				0EEB30301DB0C5E400D19599 /* UIView+LayoutMethods.h */,
-				0EEB30311DB0C5E400D19599 /* UIView+LayoutMethods.m */,
+				0E67CFBC1DBF64F50024B1CD /* Category */,
+				0E67CFC11DBF64F50024B1CD /* LXBChooseDateView.h */,
+				0E67CFC21DBF64F50024B1CD /* LXBChooseDateView.m */,
 			);
-			path = category;
+			path = LXBChooseDateView;
 			sourceTree = "<group>";
 		};
-		0EEB302D1DB0C5DA00D19599 /* LXBChooseDateView */ = {
+		0E67CFBC1DBF64F50024B1CD /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				0E198A181DB61342008E999A /* category */,
-				0EE25F0B1D1D309700D7F546 /* LXBChooseDateView.h */,
-				0EE25F0C1D1D309700D7F546 /* LXBChooseDateView.m */,
+				0E67CFBD1DBF64F50024B1CD /* NSDate+LXBExtension.h */,
+				0E67CFBE1DBF64F50024B1CD /* NSDate+LXBExtension.m */,
+				0E67CFBF1DBF64F50024B1CD /* UIView+LayoutMethods.h */,
+				0E67CFC01DBF64F50024B1CD /* UIView+LayoutMethods.m */,
 			);
-			name = LXBChooseDateView;
 			path = Category;
 			sourceTree = "<group>";
 		};
@@ -89,7 +88,7 @@
 		0EFE71B41D0E93640049CDD1 /* calender */ = {
 			isa = PBXGroup;
 			children = (
-				0EEB302D1DB0C5DA00D19599 /* LXBChooseDateView */,
+				0E67CFBB1DBF64F50024B1CD /* LXBChooseDateView */,
 				0EFE71B81D0E93640049CDD1 /* AppDelegate.h */,
 				0EFE71B91D0E93640049CDD1 /* AppDelegate.m */,
 				0EFE71BB1D0E93640049CDD1 /* ViewController.h */,
@@ -183,11 +182,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EFE71BD1D0E93640049CDD1 /* ViewController.m in Sources */,
-				0EE25F0D1D1D309700D7F546 /* LXBChooseDateView.m in Sources */,
+				0E67CFC41DBF64F50024B1CD /* UIView+LayoutMethods.m in Sources */,
+				0E67CFC51DBF64F50024B1CD /* LXBChooseDateView.m in Sources */,
+				0E67CFC31DBF64F50024B1CD /* NSDate+LXBExtension.m in Sources */,
 				0EFE71BA1D0E93640049CDD1 /* AppDelegate.m in Sources */,
 				0EFE71B71D0E93640049CDD1 /* main.m in Sources */,
-				0EEB30331DB0C5E400D19599 /* UIView+LayoutMethods.m in Sources */,
-				0EE304771DB4C71200A027CF /* NSDate+LXBExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
