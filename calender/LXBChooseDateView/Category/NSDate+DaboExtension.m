@@ -1,5 +1,5 @@
 //
-//  NSDate+LXBExtension.m
+//  NSDate+DaboExtension.m
 //  NSDateDemo
 //
 //  Created by lianxingbo on 15/8/20.
@@ -7,9 +7,9 @@
 //
 
 
-#import "NSDate+LXBExtension.h"
+#import "NSDate+DaboExtension.h"
 
-@implementation NSDate (LXBExtension)
+@implementation NSDate (DaboExtension)
 
 //是否为今年
 - (BOOL)isThisYear

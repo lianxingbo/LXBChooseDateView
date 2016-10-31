@@ -1,5 +1,5 @@
 //
-//  NSDate+LXBExtension.h
+//  NSDate+DaboExtension.h
 //  NSDateDemo
 //
 //  Created by lianxingbo on 15/8/20.
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger,NSDateFmtWithFormatter)
     NSDateFmtYYYYMMddHHmmChiness,   // @"YYYY年MM月dd日 HH:mm"
 };
 
-@interface NSDate (LXBExtension)
+@interface NSDate (DaboExtension)
 
 //是否为今年
 - (BOOL)isThisYear;
