@@ -7,7 +7,7 @@
 
 如果发现pod search LXBChooseDateView 搜索出来的不是最新版本，需要在终端执行cd转换文件路径命令退回到desktop，然后执行pod setup命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了
 
-![](https://raw.githubusercontent.com/lianxingbo/LXBChooseDateView/master/DemoGif.gif)
+<img src="https://raw.githubusercontent.com/lianxingbo/LXBChooseDateView/master/DemoGif.gif"  width=200 height=350 />
 
 ```
 - (void)setupCalendarView
