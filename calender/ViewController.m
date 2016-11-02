@@ -80,14 +80,27 @@
 
 - (void)changeSureBtnEnable
 {
-    UIColor *normalColor = [UIColor colorWithRed:0.01f green:0.62f blue:0.91f alpha:1.00f];
-    UIColor *highLightColor = [UIColor colorWithRed:0.76f green:0.76f blue:0.76f alpha:1.00f];
-    self.sureBtn.backgroundColor = self.chooseDateDict.count ? normalColor : highLightColor;
+    self.sureBtn.backgroundColor = self.chooseDateDict.count ? [UIColor orangeColor] : [UIColor lightGrayColor];
 }
 
 - (void)sureBtnClick
 {
     NSLog(@"确认日期\n%@",self.chooseDateDict);
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 #pragma mark - setters and getters
@@ -97,20 +110,22 @@
     if (!_threeCarsBackView)
     {
         UIView *threeCarsBackView = [[UIView alloc] initWithFrame:(CGRect){0,64,SCREEN_WIDTH,SCREEN_WIDTH/320*32}];
-        threeCarsBackView.backgroundColor = [UIColor whiteColor];
+        threeCarsBackView.backgroundColor = [UIColor colorWithRed:0.94f green:0.94f blue:0.94f alpha:1.00f];
         [self.view addSubview:threeCarsBackView];
         
-        NSArray *carImgName = @[@"avoidParking_kexuan_xiao",@"avoidParking_yixuan_xiao",@"avoidParking_bukexuan_xiao"];
+        NSArray *carImgName = @[[UIColor whiteColor],[UIColor greenColor],[UIColor grayColor]];
         NSArray *carLabelText = @[@"可选",@"已选",@"不可选"];
         
         for (int i = 0; i < 3; i++)
         {
-            UIImageView *carImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:carImgName[i]]];
-            carImageView.frame = CGRectMake(20+i*(25+40+5+(SCREEN_WIDTH-25*3-40*3-20*2-5*3)/2), 5, 25, 20);
+            UIImageView *carImageView = [[UIImageView alloc] initWithImage:[self imageWithColor:carImgName[i]]];
+            carImageView.frame = CGRectMake(20+i*(70+(SCREEN_WIDTH-250)/2), 5, 25, 25);
+            carImageView.layer.masksToBounds = YES;
+            carImageView.layer.cornerRadius = 12.5;
             [threeCarsBackView addSubview:carImageView];
             UILabel *carNameLabel = [[UILabel alloc] initWithFrame:(CGRect){carImageView.right + 5,11,42,12}];
             carNameLabel.font = [UIFont systemFontOfSize:13];
-            carNameLabel.textColor = [UIColor lightGrayColor];
+            carNameLabel.textColor = [UIColor grayColor];
             carNameLabel.text = carLabelText[i];
             [threeCarsBackView addSubview:carNameLabel];
         }
@@ -125,7 +140,7 @@
     {
         CGFloat sureBtnHight = 54;
         UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        sureBtn.frame = CGRectMake(0, SCREEN_HEIGHT-sureBtnHight, SCREEN_WIDTH, sureBtnHight);
+        sureBtn.frame = CGRectMake(20, SCREEN_HEIGHT - sureBtnHight - 20, SCREEN_WIDTH - 40, sureBtnHight);
         [sureBtn setTitle:@"确认日期" forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -13,7 +13,7 @@
 #define kDateBtnTag 10000
 #define kViewGap 10
 #define kBtnWidth (SCREEN_WIDTH-110)/7.0f
-#define kBtnHeight kBtnWidth*0.83f
+#define kBtnHeight kBtnWidth //*0.83f
 
 @interface LXBChooseDateView()
 
@@ -22,7 +22,6 @@
 @property (nonatomic, strong) UIImage *dateAlreadyImage;
 @property (nonatomic, strong) UIImage *dateOutOfImage;
 @property (nonatomic, strong) UILabel *headLabel;
-@property (nonatomic, strong) UIColor *headColor;
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) NSMutableArray *dateBtnArray;
 @property (nonatomic, strong) UIView *weekBg;
@@ -39,7 +38,7 @@
     self = [super init];
     if (self)
     {
-        [self setSize:CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/320*260)];
+        [self setSize:CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/320*295)];
         self.backgroundColor = [UIColor colorWithRed:0.94f green:0.94f blue:0.94f alpha:1.00f];
         [self setupNextAndLastMonthView];
     }
@@ -189,6 +188,8 @@
         {
             UIButton *dayButton = [[UIButton alloc] init];
             dayButton.frame = CGRectMake(25 + (kBtnWidth + kViewGap ) * (i % 7), (i / 7) * (kBtnHeight + 7) + self.weekBg.bottom, kBtnWidth, kBtnHeight);
+            dayButton.layer.cornerRadius = kBtnWidth/2.0;
+            dayButton.layer.masksToBounds = YES;
             dayButton.tag = kDateBtnTag + i;
             dayButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
             dayButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -228,13 +229,12 @@
 
 - (UILabel *)headLabel
 {
-    if (!_headColor)
+    if (!_headLabel)
     {
         _headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/9)];
         _headLabel.text = [NSString stringWithFormat:@"%li年%li月",(long)self.date.year,(long)self.date.month];
         _headLabel.font = [UIFont systemFontOfSize:14];
         _headLabel.textAlignment = NSTextAlignmentCenter;
-        _headLabel.textColor = self.headColor;
         [self addSubview:_headLabel];
     }
     return _headLabel;
@@ -247,38 +247,30 @@
 
 - (UIImage *)dateImage{
     if (!_dateImage) {
-        _dateImage = [UIImage imageNamed:@"avoidParking_kexuan_da"];
+        _dateImage = [self imageWithColor:[UIColor whiteColor]];
     }
     return _dateImage;
 }
 
 - (UIImage *)dateUnavailableImage{
     if (!_dateUnavailableImage) {
-        _dateUnavailableImage = [UIImage imageNamed:@"avoidParking_bukexuan_da"];
+        _dateUnavailableImage = [self imageWithColor:[UIColor grayColor]];
     }
     return _dateUnavailableImage;
 }
 
 - (UIImage *)dateAlreadyImage{
     if (!_dateAlreadyImage) {
-        _dateAlreadyImage = [UIImage imageNamed:@"avoidParking_yixuan_da"];
+        _dateAlreadyImage = [self imageWithColor:[UIColor greenColor]];
     }
     return _dateAlreadyImage;
 }
 
 - (UIImage *)dateOutOfImage{
     if (!_dateOutOfImage) {
-        _dateOutOfImage = [UIImage imageNamed:@"avoidParking_yiguoqi_da"];
+        _dateOutOfImage = [self imageWithColor:[UIColor colorWithRed:0.83f green:0.83f blue:0.83f alpha:1.00f]];
     }
     return _dateOutOfImage;
-}
-
-
-- (UIColor *)headColor{
-    if (_headColor) {
-        _headColor = [UIColor orangeColor];
-    }
-    return _headColor;
 }
 
 - (UIColor *)weekDaysColor {
@@ -286,6 +278,21 @@
         _weekDaysColor = [UIColor colorWithWhite:0.543 alpha:1.000];
     }
     return _weekDaysColor;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end
