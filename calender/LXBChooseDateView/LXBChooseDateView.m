@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UILabel *headLabel;
 @property (nonatomic, strong) UIButton *selectBtn;
 @property (nonatomic, strong) NSMutableArray *dateBtnArray;
+@property (nonatomic, strong) NSMutableArray *selectDateBtnArr;
 @property (nonatomic, strong) UIView *weekBg;
 @property (nonatomic, strong) UIColor *weekDaysColor;
 
@@ -60,10 +61,31 @@
     rightBtn.tag = 999;
     [rightBtn addTarget:self action:@selector(nextAndLastMonth:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rightBtn];
+    
+    UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [selectBtn setSize:CGSizeMake(100, 30)];
+    [selectBtn setCenterY:(self.height - selectBtn.height/2)];
+    [selectBtn setX:(self.width - selectBtn.width - 10)];
+    [selectBtn setTitle:@"可选日期全选" forState:UIControlStateNormal];
+    [selectBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [selectBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    [selectBtn setImage:[UIImage imageNamed:@"weigouxuan"] forState:UIControlStateNormal];
+    [selectBtn setImage:[UIImage imageNamed:@"yigouxuan"] forState:UIControlStateSelected];
+    [selectBtn addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    selectBtn setImageEdgeInsets:(UIEdgeInsets)
+    selectBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    selectBtn.adjustsImageWhenHighlighted = NO;
+    [self addSubview:selectBtn];
+    self.selectBtn = selectBtn;
 }
 
 - (void)createCalendarViewWith:(NSDate *)date
 {
+    NSString *key = [NSDate stringFromDate:date andNSDateFmt:NSDateFmtYYYYMM];
+    NSMutableArray *chooseDateDictForArr = [self.chooseDateDict objectForKey:key];
+    NSInteger dateDay = date.isThisMonth && date.isThisYear ? date.day - 1 : 0;
+    NSInteger choosableInteger = date.numberOfDaysInCurrentMonth - dateDay - self.unAvailableArr.count;
+    self.selectBtn.selected = (choosableInteger == chooseDateDictForArr.count);
     NSInteger daysInThisMonth = date.numberOfDaysInCurrentMonth;//date月天数
     NSInteger firstWeekday = date.weeklyOrdinality - 1;//date第一天是周几
     
@@ -81,10 +103,12 @@
             
             [dayButton setTitle:[NSString stringWithFormat:@"%li", (long)day] forState:UIControlStateNormal];
             
-            if (date.isThisMonth && date.isThisMonth)
+            if (date.isThisMonth && date.isThisYear)
             {
+                //日期索引 天数所在42个button中的索引
                 NSInteger todayIndex = date.day + firstWeekday - 1;
                 
+                //过期日 例如今天十号  0-9号都是过期的
                 if (i < todayIndex)
                 {
                     [self setStyle_Today:dayButton];
@@ -102,12 +126,14 @@
 
 #pragma mark - date button style
 
+//不显示的日期
 - (void)setStyle_BeyondThisMonth:(UIButton *)btn
 {
     btn.enabled = NO;
     [btn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:nil forState:UIControlStateNormal];
 }
+
 
 - (void)setStyle_AfterToday:(UIButton *)btn
 {
@@ -144,6 +170,8 @@
 }
 
 
+#pragma mark - event response
+
 - (void)nextAndLastMonth:(UIButton *)button
 {
     if (button.tag == 888)
@@ -164,17 +192,38 @@
 - (void)logDate:(UIButton *)dayBtn
 {
     dayBtn.selected = !dayBtn.selected;
-    NSMutableArray *selectDateBtnArr = [NSMutableArray array];;
+
+    NSInteger dateDay = self.date.isThisMonth && self.date.isThisYear ? self.date.day - 1 : 0;
+    self.selectBtn.selected = (self.date.numberOfDaysInCurrentMonth - dateDay - self.unAvailableArr.count == self.selectDateBtnArr.count);
+    self.calendarBlock(self.selectDateBtnArr);
+}
+
+- (void)selectBtnClick:(UIButton *)button
+{
+    button.selected = !button.selected;
+    for (UIButton *btn in self.dateBtnArray){
+        if (btn.enabled) {
+            btn.selected = button.selected;
+        }
+    }
+    self.calendarBlock(self.selectDateBtnArr);
+}
+
+- (NSMutableArray *)selectDateBtnArr{
+    if (!_selectDateBtnArr) {
+        _selectDateBtnArr = [NSMutableArray array];
+    }
+    [_selectDateBtnArr removeAllObjects];
     for (UIButton *btn in self.dateBtnArray)
     {
         if (btn.selected)
         {
             NSInteger day = [btn titleForState:UIControlStateNormal].integerValue;
             NSDate *chooseDate = [NSDate dateWithYear:self.date.year Month:self.date.month Day:day Hour:0 Minute:0 Second:0];
-            [selectDateBtnArr addObject:chooseDate];
+            [_selectDateBtnArr addObject:chooseDate];
         }
     }
-    self.calendarBlock(selectDateBtnArr);
+    return _selectDateBtnArr;
 }
 
 #pragma mark - Setters and Getters
