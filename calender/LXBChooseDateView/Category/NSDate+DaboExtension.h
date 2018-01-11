@@ -14,14 +14,15 @@
 
 typedef NS_ENUM(NSInteger,NSDateFmtWithFormatter)
 {
-    NSDateFmtYYYYMM,                // @"YYYY-MM"
-    NSDateFmtYYYYMMdd,              // @"YYYY-MM-dd"
-    NSDateFmtYYYYMMddHHmmss,        // @"YYYY-MM-dd HH:mm:ss"
+    //不要用大写的Y
+    NSDateFmtYYYYMM,                // @"yyyy-MM"
+    NSDateFmtYYYYMMdd,              // @"yyyy-MM-dd"
+    NSDateFmtYYYYMMddHHmmss,        // @"yyyy-MM-dd HH:mm:ss"
     NSDateFmtMMddHHmm,              // @"MM-dd HH:mm"
     NSDateFmtHHmm,                  // @"HH:mm"
-    NSDateFmtYYMMChinese,           // @"YY年MM月"
+    NSDateFmtYYMMChinese,           // @"yy年MM月"
     NSDateFmtMMddHHmmChinese,       // @"MM月dd日 HH:mm"
-    NSDateFmtYYYYMMddHHmmChiness,   // @"YYYY年MM月dd日 HH:mm"
+    NSDateFmtYYYYMMddHHmmChiness,   // @"yyyy年MM月dd日 HH:mm"
 };
 
 @interface NSDate (DaboExtension)
@@ -55,11 +56,17 @@ typedef NS_ENUM(NSInteger,NSDateFmtWithFormatter)
 
 //  -------------------------- Compare ---------------------------
 
-//两个时间比较返回NSDateComponents
-+ (NSDateComponents *)dateComponents:(NSCalendarUnit)unit fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+//s 可以根据传入的NScalendarUnit 得到差几天 几年 几个月
 
-//两个时间之间相差几天 可以根据需求返回相差几月、几周、几年
-+ (int)getDayNumbertoDay:(NSDate *)today beforDay:(NSDate *)beforday;
+/**
+ 两个时间比较返回NSDateComponents
+
+ @param unit NSCalendar 根据传入的NSCalendar返回对应的 例：NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay 年月日
+ @param fromDate 前一个时间
+ @param toDate 后一个时间
+ @return NSDateComponents （dateComponents.year dateComponents.month ）
+ */
++ (NSDateComponents *)dateComponents:(NSCalendarUnit)unit fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 //  --------------------------NSDate Get---------------------------
 

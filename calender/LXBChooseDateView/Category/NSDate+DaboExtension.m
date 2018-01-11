@@ -444,21 +444,21 @@
 
 //  -------------------------- Compare ---------------------------
 
-//两个时间比较返回NSDateComponents
+//两个时间比较 根据NSCalendarUnit 返回NSDateComponents
 + (NSDateComponents *)dateComponents:(NSCalendarUnit)unit fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate
 {
     return [fromDate.calendar components:unit fromDate:fromDate toDate:toDate options:0];
 }
 
 //两个时间之间相差几天 可以根据需求返回相差几月、几周、几年
-+ (int)getDayNumbertoDay:(NSDate *)today beforDay:(NSDate *)beforday
-{
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [calendar components:NSCalendarUnitDay fromDate:today toDate:beforday options:0];
-    //  NSDateComponents *components = [calendar components:NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today toDate:beforday options:0];
-    int day = (int)[components day];//两个日历之间相差多少月//    NSInteger days = [components month];//两个之间相差几月
-    return day;
-}
+//+ (int)getDayNumbertoDay:(NSDate *)today beforDay:(NSDate *)beforday
+//{
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *components = [calendar components:NSCalendarUnitDay fromDate:today toDate:beforday options:0];
+//    //  NSDateComponents *components = [calendar components:NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today toDate:beforday options:0];
+//    int day = (int)[components day];//两个日历之间相差多少月//    NSInteger days = [components month];//两个之间相差几月
+//    return day;
+//}
 
 //  -------------------------- Private Method ---------------------------
 
@@ -507,14 +507,14 @@
 + (NSString *)formatterStr:(NSDateFmtWithFormatter)NSDateFmt
 {
     NSArray *formatterArr = @[
-                              @"YYYY-MM",
-                              @"YYYY-MM-dd",
-                              @"YYYY-MM-dd HH:mm:ss",
+                              @"yyyy-MM",
+                              @"yyyy-MM-dd",
+                              @"yyyy-MM-dd HH:mm:ss",
                               @"MM-dd HH:mm",
                               @"HH:mm",
-                              @"YY年MM月",
+                              @"yy年MM月",
                               @"MM月dd日 HH:mm",
-                              @"YYYY年MM月dd日 HH:mm"
+                              @"yyyy年MM月dd日 HH:mm"
                               ];
     
     return formatterArr[NSDateFmt];
