@@ -68,6 +68,37 @@
     return self.year == otherDate.year;
 }
 
+/*
+ "16:26",
+ "昨天16:26",
+ "01-12 16:26",
+ "2017-01-22 16:26:04"
+ 今天显示时分 昨天显示“昨天几点”，前天显示月日时分。跨年，显示年月日时分
+ */
+- (NSString *)convertTimeStrWithDate:(NSDate *)date {
+    
+    if ([date isToday]) {//10:30
+        NSString *timeStr = [NSDate stringFromDate:date andNSDateFormatter:@"HH:mm"];
+        return timeStr;
+    }
+    
+    if ([date isYesterday]) {// 昨天  10：30
+        NSString *timeStr = [NSDate stringFromDate:date andNSDateFormatter:@"HH:mm"];
+        return [NSString stringWithFormat:@"昨天%@",timeStr];
+    }
+    
+    if (date.year == [NSDate date].year) {//1月18日 10：30  (今年)
+        NSString *timeStr = [NSDate stringFromDate:date andNSDateFormatter:@"MM-dd HH:mm"];
+        return [NSString stringWithFormat:@"%@",timeStr];
+    }
+    
+    if (date.year < [NSDate date].year) {//2017年1月18日 10：30
+        return [NSDate stringFromDate:date andNSDateFmt:NSDateFmtYYYYMMddHHmmss];
+    }
+    
+    return @"";
+}
+
 //  --------------------------NSDate Get---------------------------
 
 //根据年份、月份、日期、小时数、分钟数、秒数返回NSDate

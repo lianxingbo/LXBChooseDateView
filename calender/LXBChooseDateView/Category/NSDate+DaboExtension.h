@@ -54,6 +54,15 @@ typedef NS_ENUM(NSInteger,NSDateFmtWithFormatter)
 //判断与某一天是否为同一年
 - (BOOL)sameYearWithDate:(NSDate *)otherDate;
 
+/*
+ "16:26",
+ "昨天16:26",
+ "01-12 16:26",
+ "2017-01-22 16:26:04"
+ 今天显示时分 昨天显示“昨天几点”，前天显示月日时分。跨年，显示年月日时分
+ */
+- (NSString *)convertTimeStrWithDate:(NSDate *)date;
+
 //  -------------------------- Compare ---------------------------
 
 //s 可以根据传入的NScalendarUnit 得到差几天 几年 几个月
